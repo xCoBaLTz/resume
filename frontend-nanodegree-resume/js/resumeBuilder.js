@@ -166,3 +166,5 @@ var names = bio.name.trim().split(" ");
 console.log(inName(names[0], names[1]));
 
 projects.display();
+
+$("#mapDiv").append(googleMap);
