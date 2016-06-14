@@ -14,7 +14,7 @@ var bio = {
       "location" : "Toronto, ON"
     },
     "bioPic" : "http://i.imgur.com/T4QZTJ2.jpg",
-    "skills" : ["Algorithms", "Data Structures", "Java", "HTML", "CSS", "C", "JavaScript", "Turing", "Visual Basic", "PHP", "CodeIgniter", "MVC", "phpMyAdmin", "MySQL", "Linux Command Line"],
+    "skills" : ["Algorithms", "Data Structures", "Java", "HTML", "CSS", "C", "JavaScript", "JSON", "JQuert", "Agile Methodologies", "Turing", "Visual Basic", "PHP", "CodeIgniter", "MVC", "phpMyAdmin", "MySQL", "Linux Command Line"],
     "welcome" : "The developer you never knew you needed. I'm a computer/software engineering student who loves the artistic details of the frontend and the nitty gritty of backend. I love to play games where I am constantly challenged in my abilities to analyze problems. I also code competeively on the side."
 };
 
@@ -72,7 +72,26 @@ var work ={
    "location" : "Etobicoke, ON",
    "description" : "Selling computers and communcating with guests, gained some knowledge of the newest hardware and software in the market"
  }
- ]
+ ],
+
+display(){
+ for(job in work.jobs){
+   $("#workExperience").append(HTMLworkStart);
+   var employer = HTMLworkEmployer.replace("%data%", work.jobs[job].employer);
+   var title = HTMLworkTitle.replace("%data%", work.jobs[job].title);
+   var title_employer = employer + title;
+   $(".work-entry:last").append(title_employer);
+
+   var dates = HTMLworkDates.replace("%data%", work.jobs[job].dates);
+   $(".work-entry:last").append(dates);
+
+   var loc = HTMLworkLocation.replace("%data%", work.jobs[job].location);
+   $(".work-entry:last").append(loc);
+
+   var description = HTMLworkDescription.replace("%data%", work.jobs[job].description);
+   $(".work-entry:last").append(description);
+  }
+}
 };
 
 var education ={
@@ -80,19 +99,49 @@ var education ={
   {
     "name" : "Ryerson University",
     "city" : "Toronto, ON",
-    "degree" : "BEng",
+    "degree" : "Bachelor of Engineering",
     "major" : "Computer/Software Engineering"
   }
 ],
+displaySchools(){
+     for(school in education.schools){
+       $("#education").append(HTMLschoolStart);
+       var name = HTMLschoolName.replace("%data%", education.schools[school].name);
+       $(".education-entry:last").append(name);
+       var city = HTMLschoolLocation.replace("%data%", education.schools[school].city);
+       $(".education-entry:last").append(city);
+       var degree = HTMLschoolDegree.replace("%data%", education.schools[school].degree);
+       $(".education-entry:last").append(degree);
+       var major = HTMLschoolMajor.replace("%data%", education.schools[school].major);
+       $(".education-entry:last").append(major);
+     }
+},
  "onlineCourses":[
    {
      "title" : "JavaScript Basics",
      "school" : "Udacity",
-     "dates" : "2016",
+     "dates" : "June 2016",
+     "degree" : "Udacity Nanodegree",
      "url" : "https://classroom.udacity.com/courses/ud804"
    }
- ]
+ ],
+displayOnlineClasses(){
+      for(onlineCourse in education.onlineCourses){
+        $("#onlineCourses").append(HTMLonlineClasses);
+        var school = HTMLschoolName.replace("%data%", education.onlineCourses[onlineCourse].school);
+        $(".online-entry:last").append(school);
+        var degree = HTMLschoolDegree.replace("%data%", education.onlineCourses[onlineCourse].degree);
+        $(".online-entry:last").append(degree);
+        var title = HTMLschoolMajor.replace("%data%", education.onlineCourses[onlineCourse].title);
+        $(".online-entry:last").append(title);
+        var dates = HTMLschoolLocation.replace("%data%", education.onlineCourses[onlineCourse].dates);
+        $(".online-entry:last").append(dates);
+        var url = HTMLonlineURL.replace("%data%", education.onlineCourses[onlineCourse].url);
+        $(".online-entry:last").append(url);
+     }
+   }
 };
+
 
 var projects = {
   "project": [
@@ -102,10 +151,8 @@ var projects = {
       "image" : "http://i.imgur.com/fqEZycA.png",
       "description" : "Worked with a team of 4 to create a fraud detection system using Capital One’s API, Twilio API, and Twitter API that could determine whether a transaction was fraud or not based on location of their last tweet in coherence to the transaction. I specifically focused on the back end implementation of the project. Focusing on the implementation of the database, storage of the of the Capital One transactions and Twitter information.	Helped with the frontend implementation and was very involved with the overall planning/design of the project."
     }
-  ]
-};
-
-projects.display = function(){
+  ],
+display(){
     for(project in projects.project){
       $("#projects").append(HTMLprojectStart);
       var title = HTMLprojectTitle.replace("%data%", projects.project[project].title);
@@ -117,7 +164,8 @@ projects.display = function(){
       var image = HTMLprojectImage.replace("%data%", projects.project[project].image);
       $(".project-entry:last").append(image);
     }
-}
+  }
+};
 
 if(bio.skills.length > 0){
   $("#header").append(HTMLskillsStart);
@@ -126,45 +174,10 @@ if(bio.skills.length > 0){
   $("#skills").append(skills);
   }
 }
-function displayWork(){
-for(job in work.jobs){
-  $("#workExperience").append(HTMLworkStart);
-  var employer = HTMLworkEmployer.replace("%data%", work.jobs[job].employer);
-  var title = HTMLworkTitle.replace("%data%", work.jobs[job].title);
-  var title_employer = employer + title;
-  $(".work-entry:last").append(title_employer);
 
-  var dates = HTMLworkDates.replace("%data%", work.jobs[job].dates);
-  $(".work-entry:last").append(dates);
-
-  var loc = HTMLworkLocation.replace("%data%", work.jobs[job].location);
-  $(".work-entry:last").append(loc);
-
-  var description = HTMLworkDescription.replace("%data%", work.jobs[job].description);
-  $(".work-entry:last").append(description);
-}
-}
-displayWork();
-
-function locationizer(work_obj){
-  var locationArray = [];
-
-  for(job in work_obj.jobs){
-    locationArray.push(work_obj.jobs[job].location);
-  }
-  return locationArray;
-}
-console.log(locationizer(work));
-
-$("#main").append(internationalizeButton);
-function inName(first, last){
-  var newfirst = first;
-  var newlast = last.toUpperCase();
-  return newfirst + " " + newlast;
-}
-var names = bio.name.trim().split(" ");
-console.log(inName(names[0], names[1]));
-
+work.display();
 projects.display();
+education.displaySchools();
+education.displayOnlineClasses();
 
 $("#mapDiv").append(googleMap);

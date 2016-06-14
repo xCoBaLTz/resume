@@ -49,7 +49,7 @@ var HTMLschoolDates = '<div class="date-text">%data%</div>';
 var HTMLschoolLocation = '<div class="location-text">%data%</div>';
 var HTMLschoolMajor = '<em><br>Major: %data%</em>';
 
-var HTMLonlineClasses = '<h3>Online Classes</h3>';
+var HTMLonlineClasses = '<div class="online-entry"></div>';
 var HTMLonlineTitle = '<a href="#">%data%';
 var HTMLonlineSchool = ' - %data%</a>';
 var HTMLonlineDates = '<div class="date-text">%data%</div>';
@@ -62,13 +62,21 @@ var googleMap = '<div id="map"></div>';
 /*
 The International Name challenge in Lesson 2 where you'll create a function that will need this helper code to run. Don't delete! It hooks up your code to the button you'll be appending.
 */
-$(document).ready(function() {
+
+/*$(document).ready(function() {
   $('button').click(function() {
-    var $name = $('#name');
-    var iName = inName($name.text()) || function(){};
-    $name.html(iName);
+    var names = bio.name.trim().split(" ");
+    var i = HTMLheaderName.replace("%data", inName(name[0], names[1]));
+    $("#header").prepend(i);
+
+    function inName(first, last){
+      var newfirst = first;
+      var newlast = last.toUpperCase();
+      return newfirst + " " + newlast;
+    }
   });
 });
+*/
 
 /*
 The next few lines about clicks are for the Collecting Click Locations quiz in Lesson 2.
@@ -108,7 +116,6 @@ Start here! initializeMap() is called when page is loaded.
 function initializeMap() {
 
   var locations;
-
   var mapOptions = {
     disableDefaultUI: true
   };
@@ -130,14 +137,14 @@ function initializeMap() {
     var locations = [];
 
     // adds the single location property from bio to the locations array
-    locations.push(bio.contacts.location);
+    locations.push(bio.contact.location);
 
     // iterates through school locations and appends each location to
     // the locations array. Note that forEach is used for array iteration
     // as described in the Udacity FEND Style Guide:
     // https://udacity.github.io/frontend-nanodegree-styleguide/javascript.html#for-in-loop
     education.schools.forEach(function(school){
-      locations.push(school.location);
+      locations.push(school.city);
     });
 
     // iterates through work locations and appends each location to
@@ -147,7 +154,7 @@ function initializeMap() {
     work.jobs.forEach(function(job){
       locations.push(job.location);
     });
-
+    console.log(locations);
     return locations;
   }
 
