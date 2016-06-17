@@ -14,7 +14,7 @@ var bio = {
       "location" : "Toronto, ON"
     },
     "bioPic" : "http://i.imgur.com/T4QZTJ2.jpg",
-    "skills" : ["Algorithms", "Data Structures", "Java", "HTML", "CSS", "C", "JavaScript", "JSON", "JQuert", "Agile Methodologies", "Turing", "Visual Basic", "PHP", "CodeIgniter", "MVC", "phpMyAdmin", "MySQL", "Linux Command Line"],
+    "skills" : ["Algorithms", "Data Structures", "Java", "HTML", "CSS", "C", "JavaScript", "JSON", "JQuery", "Agile Methodologies", "Turing", "Visual Basic", "PHP", "CodeIgniter", "MVC", "phpMyAdmin", "MySQL", "Linux Command Line"],
     "welcome" : "The developer you never knew you needed. I'm a computer/software engineering student who loves the artistic details of the frontend and the nitty gritty of backend. I love to play games where I am constantly challenged in my abilities to analyze problems. I also code competeively on the side."
 };
 
